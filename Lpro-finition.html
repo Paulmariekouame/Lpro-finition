@@ -28,6 +28,86 @@
             scroll-behavior: smooth;
         }
 
+        /* Added scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), #f59e3b);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Added back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(227, 114, 34, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #cc6119;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(204, 97, 25, 0.6);
+        }
+
+        /* Added fade-in animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -208,6 +288,38 @@
             box-shadow: 0 6px 20px rgba(216, 113, 14, 0.8);
             text-decoration: none;
         }
+
+        /* Added statistics section */
+        .statistics {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, #1a3d6f 100%);
+            padding: 5rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .statistics .row {
+            justify-content: center;
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         
         /* Services Section */
         .services {
@@ -381,7 +493,35 @@
             right: 20px;
         }
         
-        /* Updated contact section styling */
+        /* Added carousel indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 15;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .carousel-indicators button.active {
+            background-color: var(--orange);
+            border-color: var(--orange);
+            transform: scale(1.2);
+        }
+        
+        /* Updated contact section layout */
         .contact {
             padding: 5rem 0 6rem;
             background: white;
@@ -494,6 +634,88 @@
             resize: vertical;
         }
 
+        /* Improved form validation styles */
+        .form-control.error {
+            border-color: #dc3545;
+            animation: shake 0.3s ease;
+        }
+
+        .form-control.success {
+            border-color: #28a745;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: -0.8rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Added success message styling */
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Added loading spinner for form submission */
+        .btn-submit.loading {
+            position: relative;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn-submit.loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         .btn-submit {
             background-color: var(--orange);
             color: white;
@@ -533,6 +755,15 @@
                 font-size: 1.15rem;
             }
 
+            /* Adjusted statistics for mobile */
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-label {
+                font-size: 1rem;
+            }
+
             .carousel-caption {
                 bottom: 20px;
                 padding: 1rem 1.5rem;
@@ -551,16 +782,31 @@
                 height: 40px;
                 font-size: 1.2rem;
             }
+
+            /* Adjusted back to top button for mobile */
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Added scroll progress bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Added back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut">↑</button>
+
     <!-- Updated navbar with logo image -->
     <nav class="navbar">
         <div class="container">
             <a class="navbar-brand" href="#accueil">
-                <img src="" alt="Logo Lpro Finition">
+                <img src="/placeholder.svg" alt="Logo Lpro Finition">
                 <span>Lpro Finition</span>
             </a>
             <button class="navbar-toggler" onclick="toggleMenu()">☰</button>
@@ -585,23 +831,55 @@
 
     <section id="accueil" class="hero">
         <div class="container">
-            <h1>Lpro Finition</h1>
-            <p>Experts en construction, sécurité électronique, peinture et finitions de qualité supérieure.</p>
-            <a href="#contact" class="btn-hero">Contactez-nous</a>
+            <h1 class="fade-in">Lpro Finition</h1>
+            <p class="fade-in">Experts en construction, sécurité électronique, peinture et finitions de qualité supérieure.</p>
+            <a href="#contact" class="btn-hero fade-in">Contactez-nous</a>
+        </div>
+    </section>
+
+    <!-- Added statistics section -->
+    <section class="statistics">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="150">0</span>
+                        <span class="stat-label">Projets Réalisés</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="100">0</span>
+                        <span class="stat-label">Clients Satisfaits</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">Années d'Expérience</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="20">0</span>
+                        <span class="stat-label">Experts Qualifiés</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Updated services section with images -->
     <section id="services" class="services">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in">
                 <h2>Nos Services</h2>
                 <p>Des solutions complètes pour tous vos besoins</p>
             </div>
             
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <div class="service-card">
+                    <div class="service-card fade-in">
                         <img src="img/Construction d'une nouvelle maison résidentielle en cours sur le chantier _ Photo Premium.jpeg" alt="Construction & Bâtiments">
                         <div class="service-card-body">
                             <h3>Construction & Bâtiments</h3>
@@ -611,7 +889,7 @@
                 </div>
                 
                 <div class="col-lg-3 col-md-6">
-                    <div class="service-card">
+                    <div class="service-card fade-in">
                         <img src="img/eheh.jpeg" alt="Électronique">
                         <div class="service-card-body">
                             <h3>Électronique</h3>
@@ -621,7 +899,7 @@
                 </div>
                 
                 <div class="col-lg-3 col-md-6">
-                    <div class="service-card">
+                    <div class="service-card fade-in">
                         <img src="img/Pourquoi opter pour des systèmes d’alarme sans fil chez soi _.jpeg" alt="Sécurité Électronique">
                         <div class="service-card-body">
                             <h3>Sécurité Électronique</h3>
@@ -631,7 +909,7 @@
                 </div>
                 
                 <div class="col-lg-3 col-md-6">
-                    <div class="service-card">
+                    <div class="service-card fade-in">
                         <img src="img/🧑_🎨🎨 Travaux réalisés.jpeg" alt="Peinture">
                         <div class="service-card-body">
                             <h3>Peinture & Rénovation</h3>
@@ -646,12 +924,12 @@
     <!-- Updated realizations section with carousel -->
     <section id="realisations" class="portfolio">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in">
                 <h2>Nos Réalisations</h2>
                 <p>Découvrez nos projets récents</p>
             </div>
             
-            <div class="carousel">
+            <div class="carousel fade-in">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="img/tete.jpeg" alt="Bâtiment Résidentiel Moderne">
@@ -696,21 +974,28 @@
                 
                 <button class="carousel-control carousel-control-prev" onclick="changeSlide(-1)">‹</button>
                 <button class="carousel-control carousel-control-next" onclick="changeSlide(1)">›</button>
+
+                <!-- Added carousel indicators -->
+                <div class="carousel-indicators">
+                    <button onclick="goToSlide(0)" class="active"></button>
+                    <button onclick="goToSlide(1)"></button>
+                    <button onclick="goToSlide(2)"></button>
+                    <button onclick="goToSlide(3)"></button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Updated contact section layout -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title fade-in">
                 <h2>Contactez-nous</h2>
-                <p>Nous sommes à votre écoute pour tous vos projets</p>
+                <p>Nous sommes à votre écoute</p>
             </div>
             
             <div class="row">
                 <div class="col-lg-5">
-                    <div class="contact-info">
+                    <div class="contact-info fade-in-left">
                         <h3>Informations</h3>
                         <p><strong>Téléphone :</strong><br><a href="tel:0706093396">07 06 09 33 96</a></p>
                         <p><strong>Email :</strong><br><a href="mailto:lprofinition07@gmail.com">lprofinition07@gmail.com</a></p>
@@ -722,14 +1007,45 @@
                 </div>
                 
                 <div class="col-lg-7">
-                    <div class="contact-form">
+                    <div class="contact-form fade-in-right">
                         <h3>Envoyez-nous un message</h3>
-                        <form action="mailto:lprofinition07@gmail.com" method="post" enctype="text/plain">
-                            <input type="text" name="Nom" class="form-control" placeholder="Votre nom complet" required>
-                            <input type="email" name="Email" class="form-control" placeholder="Votre adresse email" required>
-                            <input type="tel" name="Telephone" class="form-control" placeholder="Votre téléphone">
-                            <textarea name="Message" class="form-control" placeholder="Votre message ici..." required></textarea>
-                            <button type="submit" class="btn-submit">Envoyer</button>
+
+                        <!-- Added success message -->
+                        <div class="success-message" id="successMessage">
+                            Votre message a été envoyé avec succès! Nous vous contacterons bientôt.
+                        </div>
+
+                        <form id="contactForm">
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="name" 
+                                   name="name" 
+                                   placeholder="Votre nom *" 
+                                   required>
+                            <div class="error-message" id="nameError">Veuillez entrer votre nom</div>
+
+                            <input type="email" 
+                                   class="form-control" 
+                                   id="email" 
+                                   name="email" 
+                                   placeholder="Votre email *" 
+                                   required>
+                            <div class="error-message" id="emailError">Veuillez entrer une adresse email valide</div>
+
+                            <input type="tel" 
+                                   class="form-control" 
+                                   id="phone" 
+                                   name="phone" 
+                                   placeholder="Votre téléphone">
+
+                            <textarea class="form-control" 
+                                      id="message" 
+                                      name="message" 
+                                      placeholder="Votre message *" 
+                                      required></textarea>
+                            <div class="error-message" id="messageError">Veuillez entrer votre message</div>
+
+                            <button type="submit" class="btn-submit">Envoyer le message</button>
                         </form>
                     </div>
                 </div>
@@ -742,33 +1058,34 @@
     </footer>
 
     <script>
+        // Toggle mobile menu
         function toggleMenu() {
             const navbarCollapse = document.getElementById('navbarNav');
             navbarCollapse.classList.toggle('show');
         }
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    const navbarCollapse = document.getElementById('navbarNav');
-                    if (navbarCollapse.classList.contains('show')) {
-                        navbarCollapse.classList.remove('show');
-                    }
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
                 }
             });
         });
 
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicators button');
+        let autoSlideInterval;
 
         function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (indicators[i]) {
+                    indicators[i].classList.remove('active');
+                }
+            });
             
             if (index >= slides.length) {
                 currentSlide = 0;
@@ -779,30 +1096,208 @@
             }
             
             slides[currentSlide].classList.add('active');
+            if (indicators[currentSlide]) {
+                indicators[currentSlide].classList.add('active');
+            }
         }
 
         function changeSlide(direction) {
             showSlide(currentSlide + direction);
+            resetAutoSlide();
         }
 
-        // Auto-advance carousel
-        setInterval(() => {
-            changeSlide(1);
-        }, 4500);
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
 
-        // Form validation
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const nom = this.querySelector('[name="Nom"]').value.trim();
-            const email = this.querySelector('[name="Email"]').value.trim();
-            const message = this.querySelector('[name="Message"]').value.trim();
-            
-            if (!nom || !email || !message) {
-                e.preventDefault();
-                alert('Veuillez remplir tous les champs obligatoires avant d\'envoyer le message.');
+        function autoSlide() {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlide();
+        }
+
+        // Start auto-slide
+        autoSlide();
+
+        function updateScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
             }
         });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 100;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + '+';
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Trigger counter animation when statistics section is visible
+        let statsAnimated = false;
+        function checkStatsVisibility() {
+            const statsSection = document.querySelector('.statistics');
+            if (!statsSection || statsAnimated) return;
+
+            const rect = statsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                statsAnimated = true;
+                document.querySelectorAll('.stat-number').forEach(counter => {
+                    animateCounter(counter);
+                });
+            }
+        }
+
+        window.addEventListener('scroll', checkStatsVisibility);
+        window.addEventListener('load', checkStatsVisibility);
+
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showError(input, errorElement) {
+            input.classList.add('error');
+            input.classList.remove('success');
+            errorElement.classList.add('show');
+        }
+
+        function showSuccess(input, errorElement) {
+            input.classList.remove('error');
+            input.classList.add('success');
+            errorElement.classList.remove('show');
+        }
+
+        function validateInput(input, errorElement, validationFn = null) {
+            const value = input.value.trim();
+            
+            if (value === '') {
+                showError(input, errorElement);
+                return false;
+            }
+            
+            if (validationFn && !validationFn(value)) {
+                showError(input, errorElement);
+                return false;
+            }
+            
+            showSuccess(input, errorElement);
+            return true;
+        }
+
+        // Real-time validation
+        nameInput.addEventListener('blur', () => {
+            validateInput(nameInput, document.getElementById('nameError'));
+        });
+
+        emailInput.addEventListener('blur', () => {
+            validateInput(emailInput, document.getElementById('emailError'), validateEmail);
+        });
+
+        messageInput.addEventListener('blur', () => {
+            validateInput(messageInput, document.getElementById('messageError'));
+        });
+
+        // Form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameValid = validateInput(nameInput, document.getElementById('nameError'));
+            const emailValid = validateInput(emailInput, document.getElementById('emailError'), validateEmail);
+            const messageValid = validateInput(messageInput, document.getElementById('messageError'));
+
+            if (nameValid && emailValid && messageValid) {
+                const submitBtn = contactForm.querySelector('.btn-submit');
+                const successMessage = document.getElementById('successMessage');
+
+                // Show loading state
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+
+                // Simulate form submission
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+
+                    // Show success message
+                    successMessage.classList.add('show');
+
+                    // Reset form
+                    contactForm.reset();
+                    document.querySelectorAll('.form-control').forEach(input => {
+                        input.classList.remove('error', 'success');
+                    });
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                }, 1500);
+            }
+        });
+
+        console.log('[v0] Site web Lpro Finition amélioré chargé avec succès');
     </script>
 </body>
 </html>
-
-
